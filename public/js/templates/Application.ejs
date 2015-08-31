@@ -1,10 +1,16 @@
-<h1><%= title %></h1><p><em><span class="red">Red</span> text is the live segment.</em></p>
+<h1><%= title %></h1>
+<p><em><span class="red">Red</span> text is the current live segment.</em></p>
+<button id="pollingToggle">Stop Polling</button>
 <ul>
 	<% for(var i = 0; i < segments.length; i++) { %>
 	<li <% if( segments[i].type == 'live') { %>class="red" <% } %>>
-		<strong><%= segments[i].segment_start_date_gmt %><br/>
-		<%= segments[i].segment_start_date_et %> :</strong>
-		<%= segments[i].title %> (<%= segments[i].segment_id %>)
+		<h4><%= segments[i].title %> (id: <%= segments[i].segment_id %>)</h4>
+		<ul>
+			<li>GMT: <%= segments[i].segment_start_date_gmt %></li>
+			<li>ET: <%= segments[i].segment_start_date_et_format %></li>
+			<li>Local: <%= segments[i].segment_start_date_gmt_format %></li>
+		</ul>
+
 	</li>
 	<% } %>
 </ul>

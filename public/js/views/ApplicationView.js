@@ -16,12 +16,16 @@ define( [
 		tagName: 'div',
 		id: 'applicationView',
 		className: '',
-		events: {},
+		events: {
+			'click #pollingToggle': 'onClickPollingToggle'
+		},
+		pollingInterval: undefined,
 
 		initialize: function() {
 			this.initListeners();
 
-			this.loadTimelineSegments();
+			segments.fetch();
+			this.startPollingTimelineSegments();
 		},
 
 		initListeners: function() {
@@ -37,10 +41,15 @@ define( [
 			return this.$el.html( this.template( context ) );
 		},
 
-		loadTimelineSegments: function() {
-			setTimeout( function() {
+		startPollingTimelineSegments: function() {
+			this.pollingInterval = setInterval( function() {
 				segments.fetch();
-			}, 3000 );
+			}, 30000 );
+		},
+
+		stopPollingTimelineSegments: function() {
+			clearInterval(this.pollingInterval);
+			this.pollingInterval = undefined;
 		},
 
 		sortSegments: function() {
@@ -62,6 +71,17 @@ define( [
 
 		onSegmentsSorted: function( models, options ) {
 			this.render();
+		},
+
+		onClickPollingToggle: function( event ) {
+			if(this.pollingInterval) {
+				this.stopPollingTimelineSegments();
+				$('#pollingToggle' ).html( 'Start Polling' );
+			} else {
+				$('#pollingToggle' ).html( 'Stop Polling' );
+				segments.fetch();
+				this.startPollingTimelineSegments();
+			}
 		}
 
 	} );
