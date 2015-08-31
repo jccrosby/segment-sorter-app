@@ -6783,6 +6783,11 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/crosby\/_projects\/120sports\/dev\/tools\/segment-sorter-app\/public\/sass\/main\.scss}line{font-family:\000033}}
+body {
+  margin: 25px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/crosby\/_projects\/120sports\/dev\/tools\/segment-sorter-app\/public\/sass\/main\.scss}line{font-family:\000037}}
 .hero-unit {
   margin: 50px auto 0;
   width: 300px;
