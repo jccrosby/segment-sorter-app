@@ -9,7 +9,9 @@ define( [
 
 	var SegmentsModel = Backbone.Collection.extend( {
 		url: 'http://c.120sportsstatic.com/gen/client/timeline.json',
-		model: Segment,
+		model: function( attrs, options ) {
+			return new Segment( attrs, options );
+		},
 
 		initialize: function() {
 		},

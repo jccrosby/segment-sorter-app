@@ -6792,3 +6792,8 @@ body {
   margin: 50px auto 0;
   width: 300px;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/crosby\/_projects\/120sports\/dev\/tools\/segment-sorter-app\/public\/sass\/main\.scss}line{font-family:\0000312}}
+.red {
+  color: #ff0000;
+}

@@ -1,69 +1,70 @@
 /*global define*/
 
 define( [
-  'jquery',
-  'underscore',
-  'backbone',
-  'templates',
-  'collections/Segments'
+	'jquery',
+	'underscore',
+	'backbone',
+	'templates',
+	'collections/Segments',
+	'moment',
+	'moment-timezone',
 ], function( $, _, Backbone, JST, segments ) {
-  'use strict';
+	'use strict';
 
-  var ApplicationView = Backbone.View.extend( {
-    template: JST['public/js/templates/Application.ejs'],
-    tagName: 'div',
-    id: 'applicationView',
-    className: '',
-    events: {},
+	var ApplicationView = Backbone.View.extend( {
+		template: JST['public/js/templates/Application.ejs'],
+		tagName: 'div',
+		id: 'applicationView',
+		className: '',
+		events: {},
 
-    initialize: function() {
-      this.initListeners();
+		initialize: function() {
+			this.initListeners();
 
-      this.loadTimelineSegments();
-    },
+			this.loadTimelineSegments();
+		},
 
-    initListeners: function() {
-      this.listenTo( segments, 'reset', this.onSegmentsReset );
-      this.listenTo( segments, 'sort', this.onSegmentsSorted );
-    },
+		initListeners: function() {
+			this.listenTo( segments, 'reset', this.onSegmentsReset );
+			this.listenTo( segments, 'sort', this.onSegmentsSorted );
+		},
 
-    render: function() {
-      var context = {
-        title: "Sorted Segments",
-        segments: segments.toJSON()
-      };
-      return this.$el.html( this.template( context ) );
+		render: function() {
+			var context = {
+				title: "Sorted Segments",
+				segments: segments.toJSON()
+			};
+			return this.$el.html( this.template( context ) );
+		},
 
-    },
+		loadTimelineSegments: function() {
+			setTimeout( function() {
+				segments.fetch();
+			}, 3000 );
+		},
 
-    loadTimelineSegments: function() {
-      setTimeout(function(){
-        segments.fetch();
-      }, 3000);
-    },
+		sortSegments: function() {
+			segments.sort();
+		},
 
-    sortSegments: function() {
-      segments.sort();
-    },
+		findUpcommingSegments: function() {
 
-    findUpcommingSegments: function() {
-
-    },
+		},
 
 
-    //================================================
-    // Handlers
-    //================================================
+		//================================================
+		// Handlers
+		//================================================
 
-    onSegmentsReset: function( models, options ) {
-      this.sortSegments();
-    },
+		onSegmentsReset: function( models, options ) {
+			this.sortSegments();
+		},
 
-    onSegmentsSorted: function( models, options ) {
-      this.render();
-    }
+		onSegmentsSorted: function( models, options ) {
+			this.render();
+		}
 
-  } );
+	} );
 
-  return ApplicationView;
+	return ApplicationView;
 } );

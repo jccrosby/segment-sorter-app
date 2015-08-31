@@ -9,17 +9,17 @@ function print() { __p += __j.call(arguments, '') }
 with (obj) {
 __p += '<h1>' +
 ((__t = ( title )) == null ? '' : __t) +
-'</h1>\n<ul>\n\t';
- for(var i=0; i<segments.length; i++) {;
+'</h1><p><em><span class="red">Red</span> text is the live segment.</em></p>\n<ul>\n\t';
+ for(var i = 0; i < segments.length; i++) { ;
 __p += '\n\t<li ';
  if( segments[i].type == 'live') { ;
-__p += 'style="color:#ff0000;"';
+__p += 'class="red" ';
  } ;
-__p += ' >\n\t\t<strong>' +
-((__t = ( segments[i].segment_start_date_gmt)) == null ? '' : __t) +
-'<br/>\n\t\t\t' +
-((__t = ( new Date( segments[i].segment_start_date_gmt ).toUTCString() )) == null ? '' : __t) +
-' :</strong> ' +
+__p += '>\n\t\t<strong>' +
+((__t = ( segments[i].segment_start_date_gmt )) == null ? '' : __t) +
+'<br/>\n\t\t' +
+((__t = ( segments[i].segment_start_date_et )) == null ? '' : __t) +
+' :</strong>\n\t\t' +
 ((__t = ( segments[i].title )) == null ? '' : __t) +
 ' (' +
 ((__t = ( segments[i].segment_id )) == null ? '' : __t) +
