@@ -17,7 +17,7 @@ module.exports = function( grunt ) {
 		},
 		express: {
 			options: {
-				port: 1337
+				port: 3000
 			},
 			dev: {
 				options: {
@@ -28,7 +28,7 @@ module.exports = function( grunt ) {
 		connect: {
 			test: {
 				options: {
-					port: 1337,
+					port: 3000,
 					base: 'test'
 				}
 			}
