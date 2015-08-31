@@ -29,7 +29,10 @@ require.config( {
 
 require( [
 	'backbone',
-	'bootstrap'
-], function( Backbone, Bootstrap ) {
+	'bootstrap',
+	'views/ApplicationView'
+], function( Backbone, Bootstrap, ApplicationView ) {
 	Backbone.history.start();
+	var application = new ApplicationView();
+	$( '#app' ).append( application.render() );
 } );
