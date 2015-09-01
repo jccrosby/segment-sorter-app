@@ -21,6 +21,7 @@ define( [
 			media_playback_urls: undefined,
 			sponsor: undefined,
 			tags: undefined,
+			is_published: undefined,
 		},
 
 		initialize: function() {
@@ -38,9 +39,9 @@ define( [
 			if( attrs.hasOwnProperty( 'segment_start_date_gmt' ) ) {
 				// Start date time & timezone
 				var theMoment = moment( attrs.segment_start_date_gmt, ['YYYY-MM-DDTHH:mm:ssZ'] );
-				attrs.segment_start_date_gmt_format = theMoment.format( DATE_TIME_FORMAT );
+				attrs.segment_start_date_local_format = theMoment.format( DATE_TIME_FORMAT );
 				attrs.segment_start_date_et_format = theMoment.tz( 'America/New_York' ).format( DATE_TIME_FORMAT );
-
+				attrs.is_published = theMoment.tz( 'America/New_York' ).isBefore( moment.tz( 'America/New_York' ) );
 				//segment_id
 				var segmentId = attrs.segment_id.toString();
 				var firstSet = segmentId.slice( -6, -3 );
