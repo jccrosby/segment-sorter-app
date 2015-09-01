@@ -21,6 +21,7 @@ define( [
 			media_playback_urls: undefined,
 			sponsor: undefined,
 			tags: undefined,
+			is_published: undefined,
 		},
 
 		initialize: function() {
@@ -36,10 +37,17 @@ define( [
 		set: function( attrs, options ) {
 			//Will be triggered whenever set is called
 			if( attrs.hasOwnProperty( 'segment_start_date_gmt' ) ) {
-				//2015-08-31T22:55:28+0000
+				// Start date time & timezone
 				var theMoment = moment( attrs.segment_start_date_gmt, ['YYYY-MM-DDTHH:mm:ssZ'] );
-				attrs.segment_start_date_gmt_format = theMoment.format( DATE_TIME_FORMAT );
+				attrs.segment_start_date_local_format = theMoment.format( DATE_TIME_FORMAT );
 				attrs.segment_start_date_et_format = theMoment.tz( 'America/New_York' ).format( DATE_TIME_FORMAT );
+				attrs.is_published = theMoment.tz( 'America/New_York' ).isBefore( moment.tz( 'America/New_York' ) );
+				//segment_id
+				var segmentId = attrs.segment_id.toString();
+				var firstSet = segmentId.slice( -6, -3 );
+				var secondSet = segmentId.slice( -3, segmentId.length );
+				//http://c.120sportsstatic.com/gen/client/seg/636/368/146636368.json
+				attrs.segment_json_url = 'http://c.120sportsstatic.com/gen/client/seg/' + firstSet + '/' + secondSet + '/' + segmentId + '.json';
 			}
 			return Backbone.Model.prototype.set.call( this, attrs, options );
 		}

@@ -1,16 +1,25 @@
-<h1><%= title %></h1>
+<h4><%= title %></h4>
 <p><em><span class="red">Red</span> text is the current live segment.</em></p>
 <button id="pollingToggle">Stop Polling</button>
 <ul>
 	<% for(var i = 0; i < segments.length; i++) { %>
 	<li <% if( segments[i].type == 'live') { %>class="red" <% } %>>
-		<h4><%= segments[i].title %> (id: <%= segments[i].segment_id %>)</h4>
+		<h5>
+			<a href="http://www.120sports.com/video/v<%= segments[i].segment_id %>" target="_blank">
+				<%= segments[i].title %> (id: <%= segments[i].segment_id %>)
+			</a>
+		</h5>
 		<ul>
-			<li>GMT: <%= segments[i].segment_start_date_gmt %></li>
-			<li>ET: <%= segments[i].segment_start_date_et_format %></li>
-			<li>Local: <%= segments[i].segment_start_date_gmt_format %></li>
+			<li>Start Date:<br/>
+				<ul>
+					<li>GMT: <%= segments[i].segment_start_date_gmt %></li>
+					<li>ET: <%= segments[i].segment_start_date_et_format %></li>
+					<li>Local: <%= segments[i].segment_start_date_local_format %></li>
+				</ul>
+			</li>
+			<li>Published? <% if( segments[i].is_published ) { %>Yes<% } else { %>No<% } %></li>
+			<li>JSON: <a href="<%= segments[i].segment_json_url %>" target="_blank"><%= segments[i].segment_json_url %></a></li>
 		</ul>
-
 	</li>
 	<% } %>
 </ul>
