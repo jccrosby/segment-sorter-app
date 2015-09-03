@@ -27,11 +27,13 @@ __p += '>\n\t\t<h5>\n\t\t\t<a href="http://www.120sports.com/video/v' +
 ((__t = ( segments[i].segment_start_date_et_format )) == null ? '' : __t) +
 '</li>\n\t\t\t\t\t<li>Local: ' +
 ((__t = ( segments[i].segment_start_date_local_format )) == null ? '' : __t) +
-'</li>\n\t\t\t\t</ul>\n\t\t\t</li>\n\t\t\t<li>Published? ';
- if( segments[i].is_published ) { ;
-__p += 'Yes';
- } else { ;
-__p += 'No';
+'</li>\n\t\t\t\t</ul>\n\t\t\t</li>\n\t\t\t<li>Type: ' +
+((__t = ( segments[i].type  )) == null ? '' : __t) +
+'</li>\n\t\t\t<li>Published? ';
+ if( segments[i].type == 'vod' || segments[i].type == 'live' ) { ;
+__p += '\n\t\t\t\t\tYes\n\t\t\t\t';
+ } else  { ;
+__p += '\n\t\t\t\t\tNo\n\t\t\t\t';
  } ;
 __p += '</li>\n\t\t\t<li>JSON: <a href="' +
 ((__t = ( segments[i].segment_json_url )) == null ? '' : __t) +
