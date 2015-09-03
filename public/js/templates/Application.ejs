@@ -17,7 +17,12 @@
 					<li>Local: <%= segments[i].segment_start_date_local_format %></li>
 				</ul>
 			</li>
-			<li>Published? <% if( segments[i].is_published ) { %>Yes<% } else { %>No<% } %></li>
+			<li>Type: <%= segments[i].type  %></li>
+			<li>Published? <% if( segments[i].type == 'vod' || segments[i].type == 'live' ) { %>
+					Yes
+				<% } else  { %>
+					No
+				<% } %></li>
 			<li>JSON: <a href="<%= segments[i].segment_json_url %>" target="_blank"><%= segments[i].segment_json_url %></a></li>
 		</ul>
 	</li>
